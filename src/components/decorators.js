@@ -53,20 +53,20 @@ Header.propTypes = {
     style: PropTypes.object,
     node: PropTypes.object.isRequired
 };
+const Cont = styled('div', { shouldForwardProp: prop => ['className', 'children', 'onClick', 'name', 'terminal', 'decorators', 'node'].indexOf(prop) !== -1 })((({style}) => style));
 
 class Container extends React.Component {
     render() {
         const {style, decorators, terminal, onClick, node} = this.props;
 
         return (
-            <div onClick={onClick}
-                 ref={ref => this.clickableRef = ref}
-                 style={style.container}>
+            <Cont onClick={onClick}
+                ref={ref => this.clickableRef = ref}
+                style={style.container}>
                 {!terminal ? this.renderToggle() : null}
 
-                <decorators.Header node={node}
-                                   style={style.header}/>
-            </div>
+        <decorators.Header node={node} style={style.header}/>
+</Cont>
         );
     }
 
